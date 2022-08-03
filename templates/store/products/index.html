@@ -1,0 +1,38 @@
+{% extends 'store/layout/main.html' %}
+
+{% block content %}
+
+<div class="uk-background-primary uk-light uk-padding-small">
+    <a style="text-decoration:none" href={% url 'Home' %}> Home /</a>
+    <a style="text-decoration:none" href={% url 'Categorys' %}> Collections /</a>
+    <a style="text-decoration:none" href="{% url 'CategorysView' category.slug %}"> {{category.name}}</a>
+</div>
+
+<div class="uk-container">
+    <div class="uk-flex-center" > 
+        <h1 class="uk-text-uppercase uk-heading-divider" >{{category.name}}</h1>
+    </div>
+    <div class="uk-child-width-1-4@s" uk-grid uk-height-match="target: > a > div > .uk-card">
+        {% for item in products %}
+        <a href="{% url 'ProductView' item.category.slug item.slug %}">
+        <div>
+            <div class="uk-card uk-card-default uk-card-hover">
+                <div class="uk-card-media-top">
+                    <img src="{{item.product_image.url}}" alt="Product Image">
+                </div>
+                <div class="uk-card-body uk-text-center">
+                    <h3 class="uk-card-title">{{item.name}}</h3>
+                    <p class="">{{item.small_description}}</p>
+                </div>
+                <div class="uk-card-footer">
+                    <span>Original Price: ${{item.original_price | stringformat:'d'}} </span>
+                    <span>Selling Price: ${{item.selling_price | stringformat:'d'}} </span>
+                </div>
+            </div>
+        </div>
+    </a>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}

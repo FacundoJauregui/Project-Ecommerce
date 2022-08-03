@@ -1,0 +1,68 @@
+{% extends 'store/layout/main.html' %}
+
+{% block content %}
+
+<div class="uk-background-primary uk-light uk-padding-small">
+    <a style="text-decoration:none" href={% url 'Home' %}> Home /</a>
+    <a style="text-decoration:none" href={% url 'CartView' %}> Cart</a>
+</div>
+
+
+{% if cart %}
+<div class="uk-container">
+    <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink"></th>
+                    <th class="uk-table-expand"></th>
+                    <th class="uk-width-small"></th>
+                    <th class="uk-width-small"></th>
+                    <th class="uk-table-expand uk-text-nowrap"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item  in cart %}
+                    <tr class="product-data">
+                        <td><img class="uk-preserve-width" src="{{ item.product.product_image.url}}" width="90" height="90" alt=""></td>
+                        <td class="uk-table-link">
+                            <p class="uk-link-reset">{{item.product.name}}</p>
+                        </td>
+                        <td>$ {{item.product.selling_price | stringformat:'d'}}</td>
+                        <td class="uk-text-nowrap uk-text-center">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ item.product.id }}" class="prod-id">
+                            {% if item.product.quantity >= item.product_qty %}
+                                <div class="uk-inline">
+                                    <button class="uk-form-icon updateQty decrement-btn">-</button>
+                                    <input class="uk-input qty-input uk-text-center" type="text" value="{{ item.product_qty }}" style="width:120px;margin-right:30px">
+                                    <button class="uk-form-icon uk-form-icon-flip updateQty increment-btn">+</button>
+                                </div>
+                            {% else %}
+                                <p class="uk-link-reset">Out of stock</p></p>
+                            {% endif %}
+                        </td>
+                        <td class="uk-text-nowrap uk-text-center">
+                            <a href="{% url 'DeleteItem' item.id %}">
+                                <button class="uk-button uk-button-danger uk-text-center"><span uk-icon="icon: trash"></span>Remove</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="uk-background uk-padding-small uk-text-center">
+            <a href="{% url 'CheckoutView' %}">
+                <button class="uk-button uk-button-primary uk-text-center"><span uk-icon="icon: bag"></span> Checkout</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="uk-container">
+    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-box-shadow-large">
+        <h1>Your cart is empty</h1>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

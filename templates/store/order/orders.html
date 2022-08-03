@@ -1,0 +1,46 @@
+{% extends 'store/layout/main.html' %}
+
+{% block content %}
+
+<div class="uk-background-primary uk-light uk-padding-small">
+    <a style="text-decoration:none" href={% url 'Home' %}> Home /</a>
+    <a style="text-decoration:none" href={% url 'MyOrders' %}> My orders</a>
+</div>
+
+
+{% if orders %}
+<div class="uk-container uk-container-large">
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-medium-top uk-box-shadow-large">
+        <h2 class="uk-heading-bullet uk-text-left">My Orders</h2>
+        <table class="uk-table uk-table-striped">
+            <thead>
+                <tr class="uk-active">
+                    <th style="color:black"><b>Order Date</b></th>
+                    <th style="color:black"><b>Tracking Number</b></th>
+                    <th style="color:black"><b>Total Price</b></th>
+                    <th style="color:black"><b>Status</b></th>
+                    <th class="uk-width-small" style="color:black"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in orders %}
+                    <tr>
+                        <td>{{item.created_at}}</td>
+                        <td>{{item.tracking_no}}</td>
+                        <td>$ {{item.total_price | stringformat:'d'}}</td>
+                        <td>{{item.status}}</td>
+                        <td class="uk-text-center"><a class="uk-button uk-button-primary" href="{% url 'OrderDetail' item.tracking_no %}">Details</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="uk-container">
+    <div class="uk-card uk-card-default uk-card-body uk-text-center">
+        <h1>You have no orders</h1>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

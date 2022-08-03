@@ -1,0 +1,77 @@
+{% extends 'store/layout/main.html' %}
+
+{% block content %}
+
+<div class="uk-background-primary uk-light uk-padding-small">
+    <a style="text-decoration:none" href={% url 'Home' %}> Home /</a>
+    <a style="text-decoration:none" href={% url 'MyOrders' %}> My orders</a>
+</div>
+
+<div class="uk-container uk-container-large">
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-medium-top uk-box-shadow-large">
+        <div class="uk-clearfix">
+            <div class="uk-float-left">
+                <h2 class="uk-heading-bullet uk-text-left">Order View</h2>
+            </div>
+            <div class="uk-float-right">
+                <a class="uk-button uk-button-secondary" href="{% url 'MyOrders' %}"><span uk-icon="icon: reply"></span>  Back</a>
+            </div>
+        </div>
+        <div class="uk-grid-medium uk-child-width-expand@s uk-text-center" uk-grid>
+            <div>
+                <div class="uk-background">
+                    <h3 class="uk-heading-divider uk-text-left">Shipping Details</h3>
+                    <legend class="uk-text-left uk-legend">First Name: </legend>
+                    <p class="uk-text-left uk-margin-small-top">{{order.user.first_name}}</p>
+                    <legend class="uk-text-left uk-legend">Last Name: </legend>
+                    <p class="uk-text-left uk-margin-small-top">{{order.user.last_name}}</p>
+                    <legend class="uk-text-left uk-legend">Email: </legend>
+                    <p class="uk-text-left uk-margin-small-top">{{order.user.email}}</p>
+                    <legend class="uk-text-left uk-legend">Contact nro: </legend>
+                    <p class="uk-text-left uk-margin-small-top">{{order.phone}}</p>
+                    <legend class="uk-text-left uk-legend">Address: </legend>
+                    <p class="uk-text-left uk-margin-small-top">{{order.address}}</p>
+                    <legend class="uk-text-left uk-legend">Zip Code: </legend>
+                    <p class="uk-text-left uk-margin-small-top">{{order.pin_code}}</p>
+                </div>
+            </div>
+            <div>
+                <div class="uk-background">
+                    <h3 class="uk-heading-divider uk-text-left">Order Details</h3>
+                    <table class="uk-table uk-table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order_items %}
+                                <tr>
+                                    <td><div class="uk-text-left">{{item.product.name}}</div></td>
+                                    <td><div class="uk-text-left">{{item.quantity}}</div></td>
+                                    <td><div class="uk-text-left">$ {{item.price | stringformat:'d'}}</div></td>
+                                    <td><img class="uk-preserve-width" src="{{item.product.product_image.url}}" width="80" height="80" alt=""></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="uk-clearfix">
+                        <div class="uk-float-left">
+                            <h3 class="">Grand Total:</h3>
+                        </div>
+                        <div class="uk-float-right">
+                            <h3 class="">${{order.total_price | stringformat:'d'}}</h3>
+                        </div>
+                    </div>
+                    <h5 class="uk-text-default uk-text-left uk-margin-remove"><b>Payment Method:</b> {{order.payment_method}}</h5>
+                    <h5 class="uk-text-default uk-text-left uk-margin-remove"><b>Status:</b> {{order.status}}</h5>
+                    <h5 class="uk-text-default uk-text-left uk-margin-remove"><b>Tracking Number:</b> {{order.tracking_no}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

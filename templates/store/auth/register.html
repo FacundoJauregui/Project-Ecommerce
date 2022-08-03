@@ -1,0 +1,57 @@
+{% extends 'store/layout/main.html' %}
+
+{% block content %}
+<div class="uk-container">
+    <div class="uk-flex-center" > 
+        <div class="row">
+            <div class="uk-flex uk-flex-center uk-margin-large-top">
+                <div class="uk-card uk-card-default uk-card-body" style="width: 500px">
+                    <h1 class="uk-heading-divider uk-text-center">Register Form</h1>
+                    <form class="uk-grid-small" method="POST" uk-grid>{% csrf_token %}
+                        <div class="uk-width-1-2@s">
+                            <label class="uk-form-label" for="form-stacked-text">First Name</label>
+                            {{form.first_name}}
+                        </div>
+                        <div class="uk-width-1-2@s">
+                            <label class="uk-form-label" for="form-stacked-text">Last Name</label>
+                            {{form.last_name}}
+                        </div>
+                        <div class="uk-width-1-1">
+                            <label class="uk-form-label" for="form-stacked-text">Username</label>
+                            {{form.username}}
+                            {% if form.errors.username %}
+                                <label class="uk-form-label uk-text-danger" for="form-stacked-text">{{form.errors.username}}</label>
+                            {% endif %}
+                        </div>
+                        <div class="uk-width-1-1">
+                            <label class="uk-form-label" for="form-stacked-text">Email</label>
+                            {{form.email}}
+                            {% if form.errors.email %}
+                                <label class="uk-form-label uk-text-danger" for="form-stacked-text">{{form.errors.email}}</label>
+                            {% endif %}
+                        </div>
+                        <div class="uk-width-1-1">
+                            <label class="uk-form-label" for="form-stacked-text">Password</label>
+                            {{form.password1}}
+                            {% if form.errors.password1 %}
+                                <label class="uk-form-label uk-text-danger" for="form-stacked-text">{{form.errors.password1}}</label>
+                            {% endif %}
+                        </div>
+                        <div class="uk-width-1-1">
+                            <label class="uk-form-label" for="form-stacked-text">Confirm Password</label>
+                            {{form.password2}}
+                            {% if form.errors.password2 %}
+                                <label class="uk-form-label uk-text-danger" for="form-stacked-text">{{form.errors.password2}}</label>
+                            {% endif %}
+                        </div>
+                        <div class="uk-width-1-2@s"></div>
+                        <div class="uk-width-1-2@s">
+                            <button type="submit" class="uk-width-1-1 uk-margin-small-top uk-button uk-button-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'store/layout/main.html' %}
+
+{% block content %}
+
+<div class="uk-background-primary uk-light uk-padding-small">
+    <a style="text-decoration:none" href={% url 'Home' %}> Home /</a>
+    <a style="text-decoration:none" href={% url 'Categorys' %}> Categorys</a>
+</div>
+
+<div class="uk-container">
+    <div class="uk-text-center uk-margin-small-top" > 
+        <h1 class="uk-heading-divider">CATEGORIES</h1>
+    </div>
+    <div class="uk-child-width-1-4@s uk-text-center uk-margin-small-top" uk-grid>
+        {% for item in category %}
+        <a href="{% url 'CategorysView' item.slug %}">
+            <div>
+                <div class="uk-card uk-card-default uk-animation-fade uk-card-hover">
+                    <div class="uk-card-media-top">
+                        <img src="{{ item.image.url }}" alt="Category Image">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">{{ item.name }}</h3>
+                        <p>{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}

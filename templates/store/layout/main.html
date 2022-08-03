@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/css/uikit.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    {% comment %}Alertify Js (CSS) {% endcomment %}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    
+    <style>
+        *{
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body>
+        {% include 'store/inc/navbar.html' %}
+        {% block content %}
+
+        {% endblock content %}
+        <div class="uk-position-bottom-left uk-overlay uk-overlay-default">
+          <a href="https://wa.me/+543413244443?text=I'm%20interested%20in%20to%20chat">
+            <img src="{% static 'img/whatsapp-logo-11.png' %}" alt="whatsapp" width="60px">
+          </a>
+        </div>
+
+        {% comment %} UiKit Js {% endcomment %}
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/js/uikit-icons.min.js"></script>
+
+        {% comment %} Jquery {% endcomment %}
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"> </script>
+
+        {% comment %} Custom Js {% endcomment %}
+        <script src="{% static 'js/custom.js' %}"> </script>
+
+        {% comment %} Alertify Js {% endcomment %}
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+        <script>
+            alertify.set('notifier','position', 'top-right');
+
+            {% for msg in messages %}
+                alertify.success('{{ msg }}') ;
+            {% endfor %}
+        </script>
+
+        <script>
+            const mp = new MercadoPago('TEST-f616ee6a-b8bb-4024-a26a-e24f9aec3899', {
+              locale: 'es-AR'
+            });
+          
+            mp.checkout({
+              preference: {
+                id: 'YOUR_PREFERENCE_ID'
+              },
+              render: {
+                container: '.payWithMP',
+              }
+            });
+          </script>
+
+        {% block scripts %}
+
+        {% endblock scripts %}
+</body>
+</html>
