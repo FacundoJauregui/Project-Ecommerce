@@ -11,7 +11,7 @@ ALLOWED_HOSTS = ['*']
 WSGI_APPLICATION = 'ecommerce.wsgi.production.application'
 
 DATABASES = {}
-DATABASES['default'] = dj_database_url.parse('mysql://root2:1413@192.168.100.9:3306/django_ecommerce')
+DATABASES['default'] = dj_database_url.config(default='mysql://root2:1413@192.168.100.9:3306/django_ecommerce')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
