@@ -6,7 +6,7 @@ DEBUG = True
 
 INSTALLED_APPS += ('gunicorn',)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-ecommerce-app-fj.herokuapp.com']
 
 WSGI_APPLICATION = 'ecommerce.wsgi.production.application'
 
