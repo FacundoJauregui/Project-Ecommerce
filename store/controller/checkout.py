@@ -16,7 +16,7 @@ def checkoutView(request):
         else:
             total_price += item.product.selling_price * item.product_qty
             
-    user_profile = Profile.objects.get(user = request.user)
+    user_profile = Profile.objects.filter(user = request.user).first()
               
     context = {'cartitems': cartitems, 'total_price':total_price,'user_profile': user_profile}
     return render(request, 'store/checkout.html', context)
