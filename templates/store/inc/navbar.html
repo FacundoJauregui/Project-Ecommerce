@@ -10,7 +10,16 @@
         </ul>
 
     </div>
-
+    {% if request.resolver_match.url_name == 'Home' %}
+        <div class="uk-navbar-center">
+            <div class="uk-navbar-nav">
+                <form method="GET">
+                    <input required class="uk-input uk-form-width-small" id="searchproduct" type="text" placeholder="Search Products" name="productsearch" style="width:400px">
+                    <button class="uk-form-icon uk-form-icon-flip"><span uk-icon="icon: search"></span></button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
     <div class="uk-navbar-right">
         {% if  request.user.is_authenticated %}
             <ul class="uk-navbar-nav">

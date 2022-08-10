@@ -14,11 +14,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}"
+    
 
     {% comment %}Alertify Js (CSS) {% endcomment %}
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    {% comment %}Autocomplete Jquery{% endcomment %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     
     <style>
         *{
@@ -47,9 +51,32 @@
         </script>
         <!--End of Tawk.to Script-->
 
+        {% comment %} Jquery {% endcomment %}
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"> </script>
+
+        {% comment %} Autocomplete Jquery{% endcomment %}
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script>
+            var availableTags = [];
+
+            $.ajax({
+              method: "GET",
+              url: "/product-list",
+              success: function (response) {
+                startAutocomplete(response)
+              }
+            });
+            function startAutocomplete(availableTags)
+            {
+              $( '#searchproduct' ).autocomplete({
+                source: availableTags
+              });
+            };
+          </script>
+
         {% comment %} Whats App Chat{% endcomment %}
-        <div class="uk-position-bottom-left uk-overlay uk-overlay-default">
-          <a href="https://wa.me/+543413244443?text=I'm%20interested%20in%20to%20chat">
+        <div class="">
+          <a href="https://wa.me/+543413244443?text=I'm%20interested%20in%20to%20chat" class="whatsapp-chat">
             <img src="{% static 'img/whatsapp-logo-11.png' %}" alt="whatsapp" width="60px">
           </a>
         </div>
@@ -57,9 +84,6 @@
         {% comment %} UiKit Js {% endcomment %}
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/js/uikit-icons.min.js"></script>
-
-        {% comment %} Jquery {% endcomment %}
-        <script src="{% static 'js/jquery-3.6.0.min.js' %}"> </script>
 
         {% comment %} Custom Js {% endcomment %}
         <script src="{% static 'js/custom.js' %}"> </script>
@@ -75,20 +99,6 @@
             {% endfor %}
         </script>
 
-        <script>
-            const mp = new MercadoPago('TEST-f616ee6a-b8bb-4024-a26a-e24f9aec3899', {
-              locale: 'es-AR'
-            });
-          
-            mp.checkout({
-              preference: {
-                id: 'YOUR_PREFERENCE_ID'
-              },
-              render: {
-                container: '.payWithMP',
-              }
-            });
-          </script>
 
         {% block scripts %}
 

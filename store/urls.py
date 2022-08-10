@@ -30,6 +30,8 @@ urlpatterns = [
     
     path('my-orders/', order.myOrders, name = 'MyOrders'),
     path('my-orders/<str:tracking_nro>/', order.orderDetail, name = 'OrderDetail'),
+    
+    path('product-list', productListAjax),
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 
 if settings.DEBUG:

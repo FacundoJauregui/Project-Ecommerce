@@ -13,7 +13,6 @@ def register(request):
             return redirect('Login')
     else:
         form = RegisterUserForm()
-        
 
     context = {'form': form}
     return render(request, "store/auth/register.html", context)
