@@ -1,5 +1,6 @@
 from .base import *
 import dj_database_url
+from .storage_backends import MediaStorage
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DEBUG = False
@@ -55,4 +56,7 @@ AWS_HEADERS = {
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE= 'storages.backends.s3boto3.S3StaticStorage'
 
-STATIC_URL= f'https://{AWS_S3_CUSTOM_DOMAIN}/static/media/'
+STATIC_URL= f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+MEDIA_URL= f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
+DEFAULT_FILE_STORAGE = 'mysite.storage_backends.MediaStorage'
