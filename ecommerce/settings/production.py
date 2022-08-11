@@ -1,8 +1,6 @@
 from .base import *
 import dj_database_url
 
-from decouple import config
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DEBUG = False
 
@@ -38,7 +36,7 @@ AWS_SECRET_ACCESS_KEY = 'sr9vzncP5ahrIsPRp/liOro3niVXulWfGlC6+ZIn'
 
 AWS_STORAGE_BUCKET_NAME = 'django-ecommerce-app-fj'
 
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 AWS_DEFAULT_ACL = 'public-read'
 
@@ -55,7 +53,7 @@ AWS_HEADERS = {
 }
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE= 'storage.backends.s3boto3.S3StaticStorage'
+STATICFILES_STORAGE= 'storages.backends.s3boto3.S3StaticStorage'
 
 STATIC_URL= f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 MEDIA_URL= f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
