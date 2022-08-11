@@ -14,7 +14,7 @@
                 <div class="uk-slider-container" >
                     <ul class="uk-slider-items uk-child-width-1-4@m" uk-grid-small uk-height-match="target: > a > div > .uk-card">
                     {% for item in trending_products %}
-                        <li>
+                        <li uk-height-match="target: > a > div > .uk-card">
                             <div class="uk-card uk-card-default uk-card-body uk-animation-fade uk-card-hover" style="width:320px;max-height:600px">
                                 {% if item.trending %}
                                     <div class="uk-card-badge uk-label">Trending</div>
