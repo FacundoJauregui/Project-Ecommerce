@@ -8,6 +8,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.local.application'
 
 
 
+
 """DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

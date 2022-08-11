@@ -1,19 +1,12 @@
 
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-p#@p9k)9s0pjo#8)ekg@@m+6et(6b60@263o+okorssqs3s5x='
-
-# SECURITY WARNING: don't run with debug turned on in production!
-
-# Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -23,6 +16,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'django-extensions'
+    'storage',
+    
     'store',
 ]
 
@@ -102,8 +99,6 @@ STATIC_URL = 'static/'
 os.makedirs(STATIC_TMP, exist_ok = True)
 os.makedirs(STATIC_ROOT, exist_ok = True)
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
@@ -121,3 +116,4 @@ LOGOUT_REDIRECT_URL = 'Login'
 LOGIN_URL = 'Login'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
