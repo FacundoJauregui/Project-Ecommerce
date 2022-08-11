@@ -10,11 +10,11 @@
 
         {% endblock title %}
     </title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/css/uikit.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="{% static 'css/custom.css' %}"
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     
 
     {% comment %}Alertify Js (CSS) {% endcomment %}
@@ -92,13 +92,12 @@
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
         <script>
-            alertify.set('notifier','position', 'top-right');
+          alertify.set('notifier','position', 'top-right');
 
-            {% for msg in messages %}
-                alertify.success('{{ msg }}') ;
-            {% endfor %}
+          {% for msg in messages %}
+              alertify.success('{{ msg }}') ;
+          {% endfor %}
         </script>
-
 
         {% block scripts %}
 
