@@ -12,21 +12,21 @@
             <div class="uk-position-relative uk-margin-medium-top">
         
                 <div class="uk-slider-container" >
-                    <ul class="uk-slider-items uk-child-width-1-4@m" uk-grid-small>
+                    <ul class="uk-slider-items uk-child-width-1-4@m" uk-grid-small uk-height-match="target: > a > div > .uk-card">
                     {% for item in trending_products %}
                         <li>
                             <div class="uk-card uk-card-default uk-card-body uk-animation-fade uk-card-hover" style="width:320px;max-height:600px">
                                 {% if item.trending %}
                                     <div class="uk-card-badge uk-label">Trending</div>
                                 {% endif %}
-                                <div class="uk-card-media-top">
+                                <div class="uk-card-media-top uk-text-center">
                                     <img src="{{item.product_image.url}}" style="widht:400px;height:150px" alt="">
                                 </div>
                                 <div class="uk-card-body uk-text-center">
                                     <p class="uk-text-default">{{item.name}}</p>
                                     <h3 class="uk-card-title uk-text-bold uk-margin-remove">${{item.selling_price | stringformat:'d'}}</h3>
                                     <a href="{% url 'ProductView' item.category.slug item.slug %}">
-                                        <button class="uk-button uk-button-primary uk-text-center"><span uk-icon="icon: info"></span> Info</button>
+                                        <button class="uk-button uk-button-primary uk-text-center uk-margin-small-top"><span uk-icon="icon: info"></span> Info</button>
                                     </a>
                                 </div>
                             </div>
