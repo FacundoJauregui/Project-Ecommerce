@@ -58,13 +58,13 @@
                                     <input type="hidden" value="{{ product.id }}" class="prod-id">
                                     <div class="">
                                         <div class="uk-inline">
-                                            <button class="uk-form-icon decrement-btn">-</button>
+                                            <button class="uk-form-icon decrement-btn uk-float-left">-</button>
                                             <input class="uk-input qty-input uk-text-center" type="text" value="1" style="width:150px;margin-right:30px">
                                             <button class="uk-form-icon uk-form-icon-flip increment-btn">+</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="uk-margin-xlarge-left uk-width-expand@m uk-margin-medium-bottom"><br>
+                                <div class="uk-float-right"><br>
                                     {% if product.quantity > 0 %}
                                         <button class="uk-button uk-button-default uk-button-primary addToCartBtn">Add to Cart <i uk-icon="cart"></i></button>
                                     {% else %}
